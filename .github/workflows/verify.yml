@@ -1,0 +1,17 @@
+name: '🚔'
+on: [ push ]
+jobs:
+  release:
+    if: startsWith(github.ref, 'refs/tags/v') == false
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v3.3.0
+      - name: Java setup
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+          cache: 'maven'
+      - run: |
+          mvn --batch-mode --show-version --errors verify --file pom.xml
