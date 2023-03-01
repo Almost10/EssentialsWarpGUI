@@ -1,4 +1,6 @@
 name: '🧑‍🏭'
+permissions:
+  contents: write
 on: [ push ]
 jobs:
   release:
